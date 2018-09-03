@@ -1,5 +1,7 @@
 package cn.chipsgateway.filter;
 
+import cn.chipsgateway.Entity.ChipsResponsebody;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -10,5 +12,5 @@ public interface IChipsGatewayFilter {
 
     String filterType();
 
-    boolean run(HttpServletRequest request, HttpServletResponse response);
+    boolean run(HttpServletRequest request, ChipsResponsebody response);
 }
