@@ -1,6 +1,5 @@
 package cn.chipsgateway.context;
 
-import cn.chipsgateway.Entity.ChipsResponsebody;
 import cn.chipsgateway.support.GatewayHttpServletRequest;
 import cn.chipsgateway.support.GatewayHttpServletResponse;
 
@@ -32,20 +31,16 @@ public class RequestContext extends ConcurrentHashMap<String, Object> {
     public void init(HttpServletRequest request, HttpServletResponse response) {
         this.put(REQUEST, new GatewayHttpServletRequest(request));
         this.put(RESPONSE, new GatewayHttpServletResponse(response));
-        this.put(CHIPSRESPONSE, new ChipsResponsebody());
     }
 
-    public HttpServletResponse getResponse() {
-        return (HttpServletResponse) this.get(RESPONSE);
+    public GatewayHttpServletResponse getResponse() {
+        return (GatewayHttpServletResponse) this.get(RESPONSE);
     }
 
-    public HttpServletRequest getRequest() {
-        return (HttpServletRequest) this.get(REQUEST);
+    public GatewayHttpServletRequest getRequest() {
+        return (GatewayHttpServletRequest) this.get(REQUEST);
     }
 
-    public ChipsResponsebody getChipsResponse() {
-        return (ChipsResponsebody) this.get(CHIPSRESPONSE);
-    }
 
     public void setFilterState(int state) {
         this.put(FILTER_STATE, state);
