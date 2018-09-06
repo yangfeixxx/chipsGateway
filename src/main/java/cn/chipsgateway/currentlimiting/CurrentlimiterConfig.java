@@ -3,15 +3,7 @@ package cn.chipsgateway.currentlimiting;
 public class CurrentlimiterConfig {
     private long allocateTime = 1000L;
     private long allocateCount = 100L;
-    private long lastRecordTime;
 
-    public long getLastRecordTime() {
-        return lastRecordTime;
-    }
-
-    public void setLastRecordTime(long lastRecordTime) {
-        this.lastRecordTime = lastRecordTime;
-    }
 
     public long getAllocateTime() {
         return allocateTime;

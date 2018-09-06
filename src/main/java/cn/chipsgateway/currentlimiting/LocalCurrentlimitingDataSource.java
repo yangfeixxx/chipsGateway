@@ -1,29 +1,25 @@
 package cn.chipsgateway.currentlimiting;
 
 import cn.chipsgateway.Entity.RequestRecordEntity;
-import cn.chipsgateway.strategy.ChoiceStrategy;
 
-import java.time.LocalDateTime;
+import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.atomic.AtomicInteger;
 
 public class LocalCurrentlimitingDataSource extends CurrentlimitingDataSourceWraper {
-
-    private long count = 0L;
+    private Map<String, RequestRecordEntity> map = new HashMap();
 
     @Override
-    public long getCount() {
-        return count;
+    public RequestRecordEntity getRequestRecordEntity(String requestRecordId) {
+        return map.get(requestRecordId);
     }
 
     @Override
-    public void addCount() {
-        ++count;
+    public void addRequestRecordCount(String requestRecordId) {
+        map.get(requestRecordId).addCount();
     }
 
     @Override
-    public void resetCount() {
-        count = 0L;
+    public void resetRequestRecordCount(String requestRecordId) {
+        map.get(requestRecordId).resetCount();
     }
 }

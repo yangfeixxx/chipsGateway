@@ -9,22 +9,23 @@ public class WindowCurrentlimiter extends AbstractCurrentlimiter {
     private static final Lock lock = new ReentrantLock(true);
 
     @Override
-    Boolean runCurrentLimiting() {
+    Boolean runCurrentLimiting(String requestRecordId) {
         long allocateCount = currentlimiterConfig.getAllocateCount();
         long allocateTime = currentlimiterConfig.getAllocateTime();
         lock.lock();
         //我这里加锁的原因是因为在不能保证操作原子性的情况下,使用Atomic类也不能保证数据一致性
         try {
             long currentTimeMillis = System.currentTimeMillis();
-            long lastRecordTime = currentlimiterConfig.getLastRecordTime();
-            long count = iCurrentlimitingDataSource.getCount();
+            RequestRecordEntity requestRecordEntity = iCurrentlimitingDataSource.getRequestRecordEntity(requestRecordId);
+            long lastRecordTime = requestRecordEntity.getLastAccessTimeMS();
+            long count = requestRecordEntity.getCount();
             if (currentTimeMillis - lastRecordTime <= allocateTime) {
                 if (count >= allocateCount)
                     return false;
-                iCurrentlimitingDataSource.addCount();
+                requestRecordEntity.addCount();
             } else {
-                currentlimiterConfig.setLastRecordTime(lastRecordTime);
-                iCurrentlimitingDataSource.resetCount();
+                requestRecordEntity.setLastAccessTimeMS(lastRecordTime);
+                requestRecordEntity.resetCount();
             }
         } finally {
             lock.unlock();

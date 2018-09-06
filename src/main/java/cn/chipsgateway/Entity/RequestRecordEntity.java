@@ -3,32 +3,30 @@ package cn.chipsgateway.Entity;
 import java.time.LocalDateTime;
 
 public class RequestRecordEntity {
-    private String ip;
-    private String url;
+    private String id;
     private Long count;
     private Long LastAccessTimeMS;
 
-    public RequestRecordEntity(String ip, String url, Long count, Long lastAccessTimeMS) {
-        this.ip = ip;
-        this.url = url;
+    public RequestRecordEntity(String id, Long count, Long lastAccessTimeMS) {
+        this.id = id;
         this.count = count;
         LastAccessTimeMS = lastAccessTimeMS;
     }
 
-    public String getIp() {
-        return ip;
+    public String getId() {
+        return id;
     }
 
-    public void setIp(String ip) {
-        this.ip = ip;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    public String getUrl() {
-        return url;
+    public void addCount() {
+        ++count;
     }
 
-    public void setUrl(String url) {
-        this.url = url;
+    public void resetCount() {
+        count = 0L;
     }
 
     public Long getCount() {

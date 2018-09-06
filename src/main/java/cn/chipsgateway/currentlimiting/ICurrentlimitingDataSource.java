@@ -2,13 +2,10 @@ package cn.chipsgateway.currentlimiting;
 
 import cn.chipsgateway.Entity.RequestRecordEntity;
 
-import java.util.List;
-
 public interface ICurrentlimitingDataSource {
-    long getCount();
+    RequestRecordEntity getRequestRecordEntity(String requestRecordId);
 
-    void addCount();
+    void addRequestRecordCount(String requestRecordId);
 
-
-    void resetCount();
+    void resetRequestRecordCount(String requestRecordId);
 }

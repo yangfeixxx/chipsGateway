@@ -5,17 +5,17 @@ import cn.chipsgateway.Entity.RequestRecordEntity;
 public class CurrentlimitingDataSourceWraper implements ICurrentlimitingDataSource {
 
     @Override
-    public long getCount() {
+    public RequestRecordEntity getRequestRecordEntity(String requestRecordId) {
         throw new RuntimeException("不能直接使用包装类");
     }
 
     @Override
-    public void addCount() {
+    public void addRequestRecordCount(String requestRecordId) {
         throw new RuntimeException("不能直接使用包装类");
     }
 
     @Override
-    public void resetCount() {
+    public void resetRequestRecordCount(String requestRecordId) {
         throw new RuntimeException("不能直接使用包装类");
     }
 }
