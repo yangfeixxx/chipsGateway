@@ -1,7 +1,10 @@
 package cn.chipsgateway.preFilter;
 
 import cn.chipsgateway.Entity.RequestRecordEntity;
+import cn.chipsgateway.context.RequestContext;
 import cn.chipsgateway.filter.AbstractChipsGatewayFilter;
+import cn.chipsgateway.strategy.ChoiceCurrentLimitingFilterStrategy;
+import cn.chipsgateway.strategy.ChoiceStrategy;
 import cn.chipsgateway.support.GatewayHttpServletRequest;
 import cn.chipsgateway.support.GatewayHttpServletResponse;
 import cn.chipsgateway.utils.WebHelpUtils;
@@ -13,7 +16,13 @@ import java.util.concurrent.ConcurrentHashMap;
 
 import static cn.chipsgateway.support.GatewayConstant.PREFILTER;
 
-public class CurrentlimitingFilter extends AbstractChipsGatewayFilter  {
+public class DefaultCurrentlimitingFilter extends AbstractChipsGatewayFilter {
+    private ChoiceStrategy choiceCurrentLimitingFilterStrategy;
+
+    public DefaultCurrentlimitingFilter(ChoiceCurrentLimitingFilterStrategy choiceCurrentLimitingFilterStrategy) {
+        this.choiceCurrentLimitingFilterStrategy = choiceCurrentLimitingFilterStrategy;
+    }
+
     public boolean shouldFilter() {
         return true;
     }
@@ -28,9 +37,8 @@ public class CurrentlimitingFilter extends AbstractChipsGatewayFilter  {
 
 
     public boolean run(GatewayHttpServletRequest request, GatewayHttpServletResponse response) {
-        String clientIp = WebHelpUtils.getIpAddress(request);
-        String url = WebHelpUtils.getRequestUrl(request);
-       // clientIp.
-        return false;
+
+        return (boolean) choiceCurrentLimitingFilterStrategy.choice();
+
     }
 }

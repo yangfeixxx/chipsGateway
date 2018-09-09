@@ -9,10 +9,26 @@ import cn.chipsgateway.utils.WebHelpUtils;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-public class OpposeReptileFilter extends AbstractChipsGatewayFilter {
+public class DefaultOpposeReptileFilter extends AbstractChipsGatewayFilter {
     private long currentlimitingCount = 60L;
 
     private long currentLimitingTimeMS = 1000L;
+
+    public long getCurrentlimitingCount() {
+        return currentlimitingCount;
+    }
+
+    public void setCurrentlimitingCount(long currentlimitingCount) {
+        this.currentlimitingCount = currentlimitingCount;
+    }
+
+    public long getCurrentLimitingTimeMS() {
+        return currentLimitingTimeMS;
+    }
+
+    public void setCurrentLimitingTimeMS(long currentLimitingTimeMS) {
+        this.currentLimitingTimeMS = currentLimitingTimeMS;
+    }
 
     private static final Map<String, RequestRecordEntity> map = new ConcurrentHashMap();
 
