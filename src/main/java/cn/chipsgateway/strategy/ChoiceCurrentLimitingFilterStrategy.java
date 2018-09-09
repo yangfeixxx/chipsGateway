@@ -17,9 +17,6 @@ public class ChoiceCurrentLimitingFilterStrategy implements ChoiceStrategy<Boole
 
     @Override
     public Boolean choice() {
-        RequestContext currentRequest = RequestContext.getCurrentRequest();
-        String requestUrl = currentRequest.getRequestUrl();
-        return abstractCurrentlimiter.runCurrentLimiting(urlMatchingCurrentlimiterConfig.get(requestUrl));
-
+        return abstractCurrentlimiter.runCurrentLimiting(urlMatchingCurrentlimiterConfig.get(RequestContext.getCurrentRequest().getRequestUrl()));
     }
 }
