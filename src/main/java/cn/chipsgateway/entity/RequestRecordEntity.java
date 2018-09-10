@@ -1,6 +1,4 @@
-package cn.chipsgateway.Entity;
-
-import java.time.LocalDateTime;
+package cn.chipsgateway.entity;
 
 public class RequestRecordEntity {
     private String id;

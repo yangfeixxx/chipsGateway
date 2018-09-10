@@ -1,12 +1,8 @@
 package cn.chipsgateway.currentlimiting;
 
-public abstract class AbstractCurrentlimiter {
+public abstract class AbstractCurrentlimiter implements ICurrentlimiter {
 
     protected ICurrentlimitingDataSource iCurrentlimitingDataSource;
-
-    public abstract Boolean runCurrentLimiting(CurrentlimiterConfig CurrentlimiterConfig);
-
-    public abstract void setiCurrentlimitingDataSource(ICurrentlimitingDataSource iCurrentlimitingDataSource);
 
 
 }

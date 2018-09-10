@@ -1,4 +1,4 @@
-package cn.chipsgateway.Entity;
+package cn.chipsgateway.entity;
 
 public class ResponseHeadEntity {
     private String AcceptRanges;

@@ -1,6 +1,6 @@
 package cn.chipsgateway.currentlimiting;
 
-import cn.chipsgateway.Entity.RequestRecordEntity;
+import cn.chipsgateway.entity.RequestRecordEntity;
 import cn.chipsgateway.context.RequestContext;
 
 import java.util.concurrent.locks.Lock;

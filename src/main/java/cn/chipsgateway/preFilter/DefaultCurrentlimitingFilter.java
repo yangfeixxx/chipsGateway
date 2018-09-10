@@ -1,18 +1,10 @@
 package cn.chipsgateway.preFilter;
 
-import cn.chipsgateway.Entity.RequestRecordEntity;
-import cn.chipsgateway.context.RequestContext;
 import cn.chipsgateway.filter.AbstractChipsGatewayFilter;
 import cn.chipsgateway.strategy.ChoiceCurrentLimitingFilterStrategy;
 import cn.chipsgateway.strategy.ChoiceStrategy;
 import cn.chipsgateway.support.GatewayHttpServletRequest;
 import cn.chipsgateway.support.GatewayHttpServletResponse;
-import cn.chipsgateway.utils.WebHelpUtils;
-
-import javax.servlet.http.HttpServletRequest;
-
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
 
 import static cn.chipsgateway.support.GatewayConstant.PREFILTER;
 

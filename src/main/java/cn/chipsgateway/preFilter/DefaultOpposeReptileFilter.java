@@ -1,6 +1,6 @@
 package cn.chipsgateway.preFilter;
 
-import cn.chipsgateway.Entity.RequestRecordEntity;
+import cn.chipsgateway.entity.RequestRecordEntity;
 import cn.chipsgateway.filter.AbstractChipsGatewayFilter;
 import cn.chipsgateway.support.GatewayHttpServletRequest;
 import cn.chipsgateway.support.GatewayHttpServletResponse;

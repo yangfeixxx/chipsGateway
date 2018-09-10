@@ -1,6 +1,6 @@
 package cn.chipsgateway.currentlimiting;
 
-import cn.chipsgateway.Entity.RequestRecordEntity;
+import cn.chipsgateway.entity.RequestRecordEntity;
 
 public interface ICurrentlimitingDataSource {
     RequestRecordEntity getRequestRecordEntity(String requestRecordId);

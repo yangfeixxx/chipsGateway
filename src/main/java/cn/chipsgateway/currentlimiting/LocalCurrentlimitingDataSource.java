@@ -1,6 +1,6 @@
 package cn.chipsgateway.currentlimiting;
 
-import cn.chipsgateway.Entity.RequestRecordEntity;
+import cn.chipsgateway.entity.RequestRecordEntity;
 
 import java.util.HashMap;
 import java.util.Map;
