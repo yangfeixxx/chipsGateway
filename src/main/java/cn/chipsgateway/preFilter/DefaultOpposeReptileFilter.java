@@ -6,9 +6,14 @@ import cn.chipsgateway.support.GatewayHttpServletRequest;
 import cn.chipsgateway.support.GatewayHttpServletResponse;
 import cn.chipsgateway.utils.WebHelpUtils;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
+import static cn.chipsgateway.support.GatewayConstant.PREFILTER;
+
+//如果网关不直接对前端开放,请不要开启(默认关闭)
 public class DefaultOpposeReptileFilter extends AbstractChipsGatewayFilter {
     private long currentlimitingCount = 60L;
 
@@ -30,15 +35,19 @@ public class DefaultOpposeReptileFilter extends AbstractChipsGatewayFilter {
         this.currentLimitingTimeMS = currentLimitingTimeMS;
     }
 
-    private static final Map<String, RequestRecordEntity> map = new ConcurrentHashMap();
+    private static final Map<String, RequestRecordEntity> MAP = new ConcurrentHashMap();
+
+    private static final String REPTILEUG = "FeedDemon,JikeSpider,Indy Library,Alexa Toolbar,AskTbFXTV,AhrefsBot,CrawlDaddy,CoolpadWebkit,Java,Feedly,UniversalFeedParser,ApacheBench,Microsoft URL Control,Swiftbot,ZmEu,oBot,jaunty,Python-urllib,lightDeckReports Bot,YYSpider,DigExt,YisouSpider,HttpClient,MJ12bot,heritrix,EasouSpider,Ezooms";
+
 
     public RequestRecordEntity getRequestRecord(String requestRecordId) {
-        return map.get(requestRecordId);
+        return MAP.get(requestRecordId);
     }
 
     public void setRequestRecord(String requestRecordId, RequestRecordEntity requestRecordEntity) {
-        map.put(requestRecordId, requestRecordEntity);
+        MAP.put(requestRecordId, requestRecordEntity);
     }
+
 
     public boolean shouldFilter() {
         return false;
@@ -51,13 +60,23 @@ public class DefaultOpposeReptileFilter extends AbstractChipsGatewayFilter {
 
     @Override
     public String filterType() {
-        return null;
+        return PREFILTER;
     }
 
     @Override
     public boolean run(GatewayHttpServletRequest request, GatewayHttpServletResponse response) {
+        String userAgent = WebHelpUtils.getUserAgent(request);
 
-        RequestRecordEntity requestRecord = getRequestRecord(WebHelpUtils.getRequestUrl(request) + WebHelpUtils.getIpAddress(request));
+        if (userAgent == null || REPTILEUG.contains(userAgent)) {
+            return false;
+        }
+
+        String requestRecordId = WebHelpUtils.getRequestUrl(request) + WebHelpUtils.getIpAddress(request);
+        RequestRecordEntity requestRecord = getRequestRecord(requestRecordId);
+        if (requestRecord == null) {
+            setRequestRecord(requestRecordId, new RequestRecordEntity(requestRecordId, 0L, System.currentTimeMillis()));
+            return true;
+        }
         Long count = requestRecord.getCount();
         long lastAccessTimeMS = requestRecord.getLastAccessTimeMS().longValue();
         long currentTimeMS = System.currentTimeMillis();

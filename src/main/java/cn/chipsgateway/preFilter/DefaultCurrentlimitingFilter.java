@@ -29,8 +29,6 @@ public class DefaultCurrentlimitingFilter extends AbstractChipsGatewayFilter {
 
 
     public boolean run(GatewayHttpServletRequest request, GatewayHttpServletResponse response) {
-
         return (boolean) choiceCurrentLimitingFilterStrategy.choice();
-
     }
 }

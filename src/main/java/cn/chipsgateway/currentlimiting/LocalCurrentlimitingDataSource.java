@@ -22,4 +22,8 @@ public class LocalCurrentlimitingDataSource extends CurrentlimitingDataSourceWra
     public void resetRequestRecordCount(String requestRecordId) {
         map.get(requestRecordId).resetCount();
     }
+    @Override
+    public void setRequestRecordEntity(String requestRecordId, RequestRecordEntity requestRecordEntity) {
+        map.put(requestRecordId,requestRecordEntity);
+    }
 }

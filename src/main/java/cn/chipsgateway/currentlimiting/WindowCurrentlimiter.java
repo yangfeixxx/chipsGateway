@@ -19,6 +19,10 @@ public class WindowCurrentlimiter extends AbstractCurrentlimiter {
         try {
             long currentTimeMillis = System.currentTimeMillis();
             RequestRecordEntity requestRecordEntity = iCurrentlimitingDataSource.getRequestRecordEntity(currentlimiterConfig.getUrl());
+            if (requestRecordEntity == null) {
+                iCurrentlimitingDataSource.setRequestRecordEntity(currentlimiterConfig.getUrl(), new RequestRecordEntity(currentlimiterConfig.getUrl(), 0L, System.currentTimeMillis()));
+                return true;
+            }
             long lastRecordTime = requestRecordEntity.getLastAccessTimeMS();
             long count = requestRecordEntity.getCount();
             if (currentTimeMillis - lastRecordTime <= allocateTime) {

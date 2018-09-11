@@ -1,5 +1,6 @@
 package cn.chipsgateway.utils;
 
+
 import javax.servlet.http.HttpServletRequest;
 
 public class WebHelpUtils {
@@ -23,5 +24,9 @@ public class WebHelpUtils {
 
     public static String getRequestUrl(HttpServletRequest request) {
         return request.getRequestURL().toString();
+    }
+
+    public static String getUserAgent(HttpServletRequest request) {
+        return StringUtils.isNotBlank(request.getHeader("User-Agent")) ? request.getHeader("User-Agent") : null;
     }
 }
