@@ -1,17 +1,17 @@
 package cn.chipsgateway.preFilter;
 
 import cn.chipsgateway.filter.AbstractChipsGatewayFilter;
-import cn.chipsgateway.strategy.ChoiceCurrentLimitingFilterStrategy;
-import cn.chipsgateway.strategy.ChoiceStrategy;
+import cn.chipsgateway.strategy.ChooseCurrentLimitingStrategy;
+import cn.chipsgateway.strategy.ChooseStrategy;
 import cn.chipsgateway.support.GatewayHttpServletRequest;
 import cn.chipsgateway.support.GatewayHttpServletResponse;
 
 import static cn.chipsgateway.support.GatewayConstant.PREFILTER;
 
 public class DefaultCurrentlimitingFilter extends AbstractChipsGatewayFilter {
-    private ChoiceStrategy choiceCurrentLimitingFilterStrategy;
+    private ChooseStrategy choiceCurrentLimitingFilterStrategy;
 
-    public DefaultCurrentlimitingFilter(ChoiceCurrentLimitingFilterStrategy choiceCurrentLimitingFilterStrategy) {
+    public DefaultCurrentlimitingFilter(ChooseCurrentLimitingStrategy choiceCurrentLimitingFilterStrategy) {
         this.choiceCurrentLimitingFilterStrategy = choiceCurrentLimitingFilterStrategy;
     }
 

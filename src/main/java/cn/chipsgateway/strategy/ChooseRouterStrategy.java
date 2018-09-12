@@ -1,6 +1,6 @@
 package cn.chipsgateway.strategy;
 
-public class ChoiceRouterStrategy implements ChoiceStrategy {
+public class ChooseRouterStrategy implements ChooseStrategy {
 
     @Override
     public Object choice() {

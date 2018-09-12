@@ -1,16 +1,16 @@
 package cn.chipsgateway.routeFilter;
 
 import cn.chipsgateway.filter.AbstractChipsGatewayFilter;
-import cn.chipsgateway.strategy.ChoiceStrategy;
+import cn.chipsgateway.strategy.ChooseStrategy;
 import cn.chipsgateway.support.GatewayHttpServletRequest;
 import cn.chipsgateway.support.GatewayHttpServletResponse;
 
 import static cn.chipsgateway.support.GatewayConstant.ROUTERFILTER;
 
 public class RouterFilter extends AbstractChipsGatewayFilter {
-    private ChoiceStrategy choiceStrategy;
+    private ChooseStrategy choiceStrategy;
 
-    public RouterFilter(ChoiceStrategy choiceStrategy) {
+    public RouterFilter(ChooseStrategy choiceStrategy) {
         this.choiceStrategy = choiceStrategy;
     }
 

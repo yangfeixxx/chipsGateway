@@ -1,5 +1,5 @@
 package cn.chipsgateway.strategy;
 
-public interface ChoiceStrategy<T> {
+public interface ChooseStrategy<T> {
     T choice();
 }
