@@ -1,6 +1,6 @@
 package cn.chipsgateway.http;
 
-public interface IHttpSendClient {
+public interface IHttpClient {
     void send();
 
     void stop();
