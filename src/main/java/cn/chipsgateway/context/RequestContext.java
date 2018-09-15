@@ -50,7 +50,7 @@ public class RequestContext extends ConcurrentHashMap<String, Object> {
     }
 
     public void setFailedFilterIpVisitUrlErrorMessage() {
-        setFailedFilterMessage("IP: [" + this.getRequestIP() + "] 访问url: [" + this.getRequestUrl() + "] 失败,原因:未在白名单之中");
+        setFailedFilterMessage("IP: [" + this.getRequestIP() + "] 访问url: [" + this.getRequestUrl() + "] 失败");
     }
 
 

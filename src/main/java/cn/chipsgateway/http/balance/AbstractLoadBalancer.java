@@ -1,6 +1,6 @@
 package cn.chipsgateway.http.balance;
 
-import javax.print.DocFlavor;
+import cn.chipsgateway.http.rule.IRule;
 
 public abstract class AbstractLoadBalancer implements ILoadBalancer {
 
@@ -10,8 +10,8 @@ public abstract class AbstractLoadBalancer implements ILoadBalancer {
         this.rule = rule;
     }
 
-    public IRule getRule(IRule lb) {
-        return lb;
+    public IRule getRule() {
+        return rule;
     }
 
 }

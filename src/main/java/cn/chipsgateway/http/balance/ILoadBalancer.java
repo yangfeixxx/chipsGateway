@@ -1,11 +1,11 @@
 package cn.chipsgateway.http.balance;
 
 import cn.chipsgateway.http.Server;
+import cn.chipsgateway.http.rule.IRule;
 
 import java.util.List;
 
 public interface ILoadBalancer {
-    void addServers(List<Server> newServers);
 
 
     Server chooseServer(Object key);
@@ -16,8 +16,5 @@ public interface ILoadBalancer {
 
     List<Server> getAllServers();
 
-    void setRule(IRule rule);
-
-    IRule getRule(IRule lb);
 
 }
