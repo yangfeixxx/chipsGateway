@@ -9,8 +9,8 @@ public class BaseLoadBalancer extends AbstractLoadBalancer {
 
     @Override
     public Server chooseServer(Object key) {
-        List<Server> serverList = getServerList((String) key);
         for (; ; ) {
+            List<Server> serverList = getServerList((String) key);
             if (Thread.interrupted()) {
                 //获取超时将被打断
                 return null;
@@ -26,7 +26,7 @@ public class BaseLoadBalancer extends AbstractLoadBalancer {
 
             server = server.isAliveFlag() ? server : null;
             if (server == null) {
-                //可能Server已经挂掉了,但是服务器列表还没来得及重置.
+                //可能Server已经挂掉了（因为心跳机制由定时线程维护）,但是服务器列表还没来得及重置.
                 //此时让出CPU资源,当然CPU也可能再次选择此线程
                 Thread.yield();
                 continue;
